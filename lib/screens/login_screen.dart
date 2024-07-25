@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flashchat/component/inputFields.dart';
+
+import 'package:flashchat/component/constants.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -8,6 +9,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late String email;
+  late String psswd;
+
   @override
   Widget build(BuildContext context) {
     timeDilation = 2;
@@ -29,15 +33,51 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 48.0,
             ),
-            InputBox(text: 'Enter your Email'),
+            TextField(
+              textAlign: TextAlign.center,
+              onChanged: (value) {
+                email = value;
+              },
+              decoration: kDecorationBox.copyWith(
+                hintText: 'Enter your Gmail',
+              ),
+              keyboardType: TextInputType.emailAddress,
+            ),
             SizedBox(
               height: 8.0,
             ),
-            InputBox(text: 'Enter your Password'),
+            TextField(
+              textAlign: TextAlign.center,
+              obscureText: true,
+              onChanged: (value) {
+                email = value;
+              },
+              decoration: kDecorationBox.copyWith(
+                hintText: 'Enter your Password',
+              ),
+            ),
             SizedBox(
               height: 24.0,
             ),
-            ActionButton(text: 'Login'),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: Material(
+                color: Colors.blueAccent,
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                elevation: 5.0,
+                child: MaterialButton(
+                  onPressed: () {
+                    print('hii');
+                  },
+                  minWidth: 200.0,
+                  height: 42.0,
+                  child: Text(
+                    'Login',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
